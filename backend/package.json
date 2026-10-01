@@ -1,0 +1,19 @@
+{
+  "name": "dia38-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env servidor.js",
+    "comprobar-db": "node --env-file=.env scripts/comprobar-db.mjs",
+    "sembrar": "node --env-file=.env scripts/sembrar.mjs",
+    "probar": "node scripts/probar.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.10.2"
+  }
+}

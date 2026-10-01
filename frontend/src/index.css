@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400&family=Montserrat:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* Los mismos tokens que la web de Vagamundo de la PEC4. */
+@theme {
+  --color-crema: #efebe6;
+  --color-hueso: #f6f3ef;
+  --color-tinta: #191512;
+  --color-suave: #7d746c;
+  --color-borde: #ddd6cd;
+  --color-acento: #a2603a;
+
+  --font-titulo: "Playfair Display", Georgia, serif;
+  --font-texto: "Inter", system-ui, sans-serif;
+  --font-etiqueta: "Montserrat", system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-crema);
+  color: var(--color-tinta);
+  font-family: var(--font-texto);
+  font-weight: 300;
+}
+
+.titular {
+  font-family: var(--font-titulo);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.etiqueta {
+  font-family: var(--font-etiqueta);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-suave);
+}
+
+.campo {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-hueso);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo:focus {
+  border-color: var(--color-suave);
+}
+
+.boton {
+  border-radius: 0.5rem;
+  background-color: var(--color-tinta);
+  color: var(--color-crema);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.boton:hover:not(:disabled) {
+  background-color: var(--color-acento);
+}
+
+.boton:disabled,
+.boton-suave:disabled {
+  opacity: 0.5;
+}
+
+.boton-suave {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-borde);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+}
+
+.boton-suave:hover:not(:disabled) {
+  border-color: color-mix(in oklab, var(--color-suave) 60%, transparent);
+}
