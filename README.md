@@ -19,6 +19,16 @@ para la sesión y bcrypt para las contraseñas.
 **La web**: React 19 con Vite, React Router 7, Tailwind CSS 4 y la Context API
 de React para el estado de la sesión.
 
+## En funcionamiento
+
+- La web: https://dia38-web.vercel.app
+- La API: https://dia38-coral.vercel.app
+- El repositorio: https://github.com/hellobymarta/dia38
+
+Para probarlo sin registrarse hay una cuenta de ejemplo: `marta@vagamundo.es`,
+contraseña `vagamundo2026`. Las crónicas que trae de inicio son suyas y de
+Nerea, así que con esa cuenta se ve lo que cambia entre lo propio y lo ajeno.
+
 ## Cómo ejecutarlo
 
 Hacen falta dos terminales, una para cada parte.
@@ -140,6 +150,10 @@ y el botón de atrás del navegador funciona.
 
 Son dos proyectos de Vercel sobre el mismo repositorio, cambiando el
 **Root Directory**: uno apunta a `backend` y el otro a `frontend`.
+
+La API necesita además una carpeta `api/` con el archivo que Vercel ejecuta como
+función, y un `vercel.json` que mande ahí todas las direcciones. Con el archivo
+en la raíz del proyecto, Vercel no lo reconoce.
 
 En el proyecto de la API hacen falta `MONGODB_URI`, `JWT_SECRETO` y
 `CORS_ORIGEN` con la dirección del frontend. En el del frontend, `VITE_API_URL`
