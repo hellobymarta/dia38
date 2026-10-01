@@ -31,19 +31,38 @@ app.use(express.json({ limit: Math.ceil((MAXIMO_IMAGEN * 1.2) / 1_000_000) + 'mb
 
 // Comprueba que la API está viva, y a propósito no toca la base de datos: así
 // puedo distinguir «la API no responde» de «responde pero no llega a Mongo».
+//
+// Digo si cada variable está puesta, nunca lo que vale: al desplegar es muy
+// fácil olvidarse de una, y desde fuera no hay manera de saberlo.
 app.get('/api/estado', (peticion, respuesta) => {
-  respuesta.json({ estado: 'en marcha' });
+  respuesta.json({
+    estado: 'en marcha',
+    configuracion: {
+      MONGODB_URI: Boolean(process.env.MONGODB_URI),
+      JWT_SECRETO: Boolean(process.env.JWT_SECRETO),
+      origenesPermitidos: origenes,
+    },
+  });
 });
 
 // Abro la conexión antes de las rutas que usan datos. Como está cacheada, solo
 // se conecta de verdad la primera vez.
 async function conMongo(peticion, respuesta, siguiente) {
+  if (!process.env.MONGODB_URI) {
+    return respuesta.status(503).json({
+      error: 'Falta la variable MONGODB_URI en el servidor.',
+    });
+  }
+
   try {
     await conectar();
     siguiente();
   } catch (fallo) {
+    console.error(fallo);
+
     respuesta.status(503).json({
       error: 'No se ha podido conectar con la base de datos. Inténtalo en un momento.',
+      detalle: fallo.message,
     });
   }
 }
