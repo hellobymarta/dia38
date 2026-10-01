@@ -38,7 +38,10 @@ app.get('/api/estado', (peticion, respuesta) => {
   respuesta.json({
     estado: 'en marcha',
     configuracion: {
-      MONGODB_URI: Boolean(process.env.MONGODB_URI),
+      // Del URI enseño solo cómo empieza y cuánto mide: con eso veo si llegó
+      // entero y bien escrito, sin que salgan el usuario ni la contraseña.
+      MONGODB_URI: (process.env.MONGODB_URI || '').slice(0, 14),
+      longitudDelURI: (process.env.MONGODB_URI || '').length,
       JWT_SECRETO: Boolean(process.env.JWT_SECRETO),
       origenesPermitidos: origenes,
     },
